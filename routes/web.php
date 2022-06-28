@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\blogsController;
+use  App\Http\Controllers\admins\adminController;
+use  App\Http\Controllers\admins\authAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +20,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route :: get('Blogs',[blogsController :: class , 'index']);
 Route::get('Blogs/Create',[blogsController :: class , 'create']);
 Route::post('Blogs/Store',[blogsController :: class , 'store']);
 
+
+######################################################################
+// Admin Routes
+// STUDENT ROUTES . . .
+Route :: get('Admins',[adminController :: class , 'index']);
+Route :: get('Admins/Create',[adminController :: class , 'create']);
+Route :: post('Admins/Store',[adminController :: class , 'store']);
+Route :: get('Admins/edit/{id}',[adminController :: class , 'edit']);
+Route :: put('Admins/update/{id}',[adminController :: class , 'update']);
+Route :: get('Admins/Delete/{id}',[adminController :: class , 'remove']);
+
+###############################################################################################################
+// AUTH ROUTES . . .
+Route :: get('Login',[authAdminController :: class , 'login']);
+Route :: post('DOLogin',[authAdminController :: class , 'doLogin']);
+Route :: get('Logout',[authAdminController :: class , 'Logout']);
+
+
+###############################################################################################################
 
 /*
 get

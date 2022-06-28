@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>create blog</title>
+    <title>Register</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -14,7 +14,7 @@
 
 
     <div class="container">
-        <h2 class="text-center">Create Blog</h2>
+        <h2>Register</h2>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -26,41 +26,44 @@
             </div>
         @endif
 
-        @if (session()->has('Message-success'))
-            <div class="alert alert-success">
-                {{ session()->get('Message-success') }}
-            </div>
-        @elseif(session()->has('Message-error'))
-            <div class="alert alert-danger">
-                {{ session()->get('Message-error') }}
-            </div>
-        @endif
+
+
+        @include('messages')
 
 
 
-        <form action="<?php echo url('/Blogs/Store'); ?>" method="post" enctype="multipart/form-data">
+
+        <form action="<?php echo url('/Admins/Store'); ?>" method="post" enctype="multipart/form-data">
 
             <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
 
             <div class="form-group">
-                <label for="exampleInputName">Title</label>
-                <input type="text" class="form-control"  id="exampleInputName" aria-describedby=""
-                    name="title" placeholder="Enter title"  value="<?php echo old('title');?>">
+                <label for="exampleInputName">Name</label>
+                <input type="text" class="form-control" id="exampleInputName" aria-describedby="" name="name"
+                    placeholder="Enter Name" value="<?php echo old('name'); ?>">
+            </div>
+
+
+            <div class="form-group">
+                <label for="exampleInputEmail">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    name="email" placeholder="Enter email" value="<?php echo old('email'); ?>">
             </div>
 
             <div class="form-group">
-                <label for="exampleInputName">Content</label>
-                    <textarea class="form-control"  name="content" rows="10"><?php echo old('content');?>
-                    </textarea>
+                <label for="exampleInputPassword">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password"
+                    placeholder="Password">
             </div>
 
-            <div class="form-group">
+                        <div class="form-group">
                 <label for="exampleInputPassword">Image</label>
-                <input class="form-control" type="file" name="image">
+                <input type="file" name="image">
             </div>
 
-            <button type="submit" class="btn btn-success">Add Blog</button>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
